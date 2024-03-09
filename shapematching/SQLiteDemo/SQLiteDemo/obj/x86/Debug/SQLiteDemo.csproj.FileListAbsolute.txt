@@ -1,0 +1,14 @@
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\bin\x86\Debug\SQLiteDemo.exe.config
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\bin\x86\Debug\SQLiteDemo.exe
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\bin\x86\Debug\SQLiteDemo.pdb
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\bin\x86\Debug\System.Data.SQLite.dll
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.csproj.AssemblyReference.cache
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.find.resources
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.Form1.resources
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.Login.resources
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.Properties.Resources.resources
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.csproj.GenerateResource.cache
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.csproj.CoreCompileInputs.cache
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.csproj.CopyComplete
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.exe
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\x86\Debug\SQLiteDemo.pdb

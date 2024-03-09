@@ -1,0 +1,26 @@
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\bin\Debug\SQLiteDemo.exe.config
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\bin\Debug\SQLiteDemo.exe
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\bin\Debug\SQLiteDemo.pdb
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\bin\Debug\System.Data.SQLite.dll
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.AssemblyReference.cache
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.SuggestedBindingRedirects.cache
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.Form1.resources
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.Properties.Resources.resources
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.GenerateResource.cache
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.CoreCompileInputs.cache
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.CopyComplete
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.exe
+E:\CSharp Project\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.pdb
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.AssemblyReference.cache
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.Form1.resources
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.Properties.Resources.resources
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.GenerateResource.cache
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.CoreCompileInputs.cache
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.exe
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.pdb
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\bin\Debug\SQLiteDemo.exe.config
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\bin\Debug\SQLiteDemo.exe
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\bin\Debug\SQLiteDemo.pdb
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.csproj.CopyComplete
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.Login.resources
+D:\desk\新建文件夹\SQLiteDemo\SQLiteDemo\obj\Debug\SQLiteDemo.find.resources

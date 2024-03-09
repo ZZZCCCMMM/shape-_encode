@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="23.05.0.0">
+<procedure name="main">
+<interface/>
+<body>
+<l>gen_circle_contour_xld (ContCircle, 204.42, 570.771, 28.8374, 0, 6.28318, 'positive', 1)</l>
+<c>*轮廓模板</c>
+<l>create_generic_shape_model (ModelID)</l>
+<l>set_generic_shape_model_param (ModelID, 'iso_scale_max', 1.0)</l>
+<l>set_generic_shape_model_param (ModelID, 'iso_scale_min', 0.9)</l>
+<l>train_generic_shape_model (ContCircle, ModelID)</l>
+<l>write_shape_model (ModelID, 'model.shm')</l>
+<l>dev_clear_window ()</l>
+<l>read_image (Image2, 'D:/desk/shape/model/2.png')</l>
+<l>get_image_size (Image2, Width, Height)</l>
+<l>emphasize (Image2, ImageEmphasize,5,5, 5)</l>
+<l>read_shape_model ('model.shm', ShapeModel3DID)</l>
+<l>set_generic_shape_model_param (ShapeModel3DID, 'restrict_iso_scale_max', 1.0)</l>
+<l>set_generic_shape_model_param (ShapeModel3DID, 'restrict_iso_scale_min', 0.9)</l>
+<l>set_generic_shape_model_param (ShapeModel3DID, 'max_deformation', 2)</l>
+<l>set_generic_shape_model_param (ShapeModel3DID, 'max_overlap', 0.3)</l>
+<l>set_generic_shape_model_param (ShapeModel3DID, 'angle_start', -0.39)</l>
+<l>set_generic_shape_model_param (ShapeModel3DID, 'angle_end', 0.39)</l>
+<l>set_generic_shape_model_param (ShapeModel3DID, 'min_score', 0.80)</l>
+<l>find_generic_shape_model (ImageEmphasize, ShapeModel3DID, MatchResultID, NumMatchResult)</l>
+<l>get_generic_shape_model_result_object (Objects, MatchResultID, 'all', 'contours')</l>
+<l>get_generic_shape_model_result (MatchResultID, 'all', 'row', Row)</l>
+<l>get_generic_shape_model_result (MatchResultID, 'all', 'column', Column)</l>
+<l>_I:=[]</l>
+<l>tuple_num:=[]</l>
+<l>tuple_max (Column, Max)</l>
+<l>tuple_min (Column, Min)</l>
+<l>tuple_gen_sequence (Min-(Max/22), Max+(Max/22)+10, Max/11, T_start)</l>
+<l>T_start:=T_start[0:10]</l>
+<l>T_end:=T_start+Max/11</l>
+<l>gen_region_contour_xld (Objects, Region, 'filled')</l>
+<l>sort_region (Region, SortedRegions, 'character', 'true', 'row')</l>
+<l>count_obj (SortedRegions, num)</l>
+<l>for Index := 1 to num by 1</l>
+<l>    select_obj (SortedRegions, ObjectSelected, Index)</l>
+<l>    smallest_circle (ObjectSelected, Row_c, Column_c, Radius)</l>
+<l>    for I := 0 to |T_start|-1 by 1</l>
+<l>        if (T_start[I]&lt;Column_c and Column_c&lt;T_end[I])</l>
+<l>            tuple_num:=[tuple_num,1] </l>
+<l>        else</l>
+<l>            tuple_num:=[tuple_num,0]</l>
+<l>        endif</l>
+<l>    endfor</l>
+<l>    tuple_find (tuple_num, 1, Indices)</l>
+<l>    _I:=[_I,Indices+1]</l>
+<l>    tuple_num:=[]   </l>
+<l>endfor</l>
+<l>k:=0</l>
+<l>result:=[]</l>
+<l>result:=[result,_I[0]]</l>
+<l>for i := 1 to |_I|-1 by 1</l>
+<l>    if (_I[i]&lt;_I[i-1])</l>
+<l>        k:=k+1</l>
+<l>        result:=[result,_I[i]+11*k]</l>
+<l>    else</l>
+<l>        result:=[result,_I[i]+11*k]</l>
+<l>    endif</l>
+<l>endfor</l>
+<l>tuple_gen_const (121, 0, T_Zeros)</l>
+<l>for j := 0 to |result|-1 by 1</l>
+<l>    T_Zeros[result[j]]:=1</l>
+<l>endfor</l>
+<c></c>
+<c>*左上角</c>
+<l>T_Zeros[0]:=1</l>
+<l>T_Zeros[1]:=1</l>
+<l>T_Zeros[11]:=1</l>
+<c>*右上角</c>
+<l>T_Zeros[10]:=1</l>
+<l>T_Zeros[11]:=1</l>
+<l>T_Zeros[21]:=1</l>
+<c>*左下角</c>
+<l>T_Zeros[101]:=1</l>
+<l>T_Zeros[111]:=1</l>
+<l>T_Zeros[112]:=1</l>
+<c>*右下角</c>
+<l>T_Zeros[100]:=1</l>
+<l>T_Zeros[119]:=1</l>
+<l>T_Zeros[120]:=1</l>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<l>_Phi:=0</l>
+<l>threshold (ImageEmphasize, Region, 0, 70)</l>
+<l>connection (Region, ConnectedRegions)</l>
+<l>select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', 1000, 10000)</l>
+<l>union1 (SelectedRegions, RegionUnion)</l>
+<l>smallest_rectangle2 (RegionUnion, Row1, Column1, Phi, null, null)</l>
+<l>hom_mat2d_identity (HomMat2DIdentity)</l>
+<l>hom_mat2d_rotate (HomMat2DIdentity, -_Phi, Column1, Row1, HomMat2DRotate)</l>
+<l>affine_trans_image (Image2, ImageAffineTrans, HomMat2DRotate, 'constant', 'false')</l>
+<c></c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+<procedure name="create_model">
+<interface>
+<oo>
+<par name="ContCircle" base_type="iconic" dimension="0"/>
+</oo>
+<oc>
+<par name="ModelID" base_type="ctrl" dimension="0"/>
+</oc>
+</interface>
+<body>
+<l>gen_circle_contour_xld (ContCircle, 204.42, 570.771, 28.8374, 0, 6.28318, 'positive', 1)</l>
+<c>*轮廓模板</c>
+<l>create_generic_shape_model (ModelID)</l>
+<l>set_generic_shape_model_param (ModelID, 'iso_scale_max', 1.0)</l>
+<l>set_generic_shape_model_param (ModelID, 'iso_scale_min', 0.9)</l>
+<l>train_generic_shape_model (ContCircle, ModelID)</l>
+<l>write_shape_model (ModelID, 'model.shm')</l>
+<l>return ()</l>
+</body>
+<docu id="create_model">
+<parameters>
+<parameter id="ContCircle"/>
+<parameter id="ModelID"/>
+</parameters>
+</docu>
+</procedure>
+</hdevelop>

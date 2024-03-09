@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="23.05.0.0">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image (Image, 'D:/desk/shape/model.png')</l>
+<l>rgb1_to_gray (Image, GrayImage)</l>
+<l>gen_circle (circle, 1020.7, 1811.64, 49.3934)</l>
+<l>classes :=['圆','角']</l>
+<l>create_class_knn (1,KNNHandle)</l>
+<l>set_params_class_knn (KNNHandle, ['method','k','max_num_classes'], ['classes_weighted_frequencies',3,1])</l>
+<l>reduce_domain (GrayImage,circle , ImageReduced_c)</l>
+<l>threshold (ImageReduced_c, Region_c, 0, 255)</l>
+<l>area_center (Region_c, null, Row_c, Column_c)</l>
+<l>for phi_k:=0 to rad(180-1) by rad(5)</l>
+<l>    hom_mat2d_identity (HomMat2DIdentity)</l>
+<l>    hom_mat2d_rotate (HomMat2DIdentity, -phi_k, Column_c, Row_c, HomMat2DRotate)    </l>
+<l>    affine_trans_image (ImageReduced_c, ImageAffineTrans_c, HomMat2DRotate, 'constant', 'false')</l>
+<l>    points_harris (ImageAffineTrans_c, 0.6, 2, 0.08, 1000, Row, Column)</l>
+<l>    Feature:=|Row|</l>
+<l>    if (Feature=[])</l>
+<l>        Feature:=0</l>
+<l>    endif</l>
+<l>    gen_cross_contour_xld (Cross, Row, Column, 12, 0.785398)</l>
+<l>    add_sample_class_knn (KNNHandle, real([Feature]), 0)</l>
+<l>endfor</l>
+<l>Row1 := 746</l>
+<l>Row2 :=772</l>
+<l>Row3 := 845</l>
+<l>Column1 := 89</l>
+<l>Column2 := 121</l>
+<l>Column3 := 195</l>
+<l>gen_region_polygon (parr, [Row1,Row1,Row3,Row3,Row2,Row2,Row1], [Column3,Column1,Column1,Column2,Column2,Column3,Column3])</l>
+<l>fill_up (parr, RegionFillUp)</l>
+<l>reduce_domain (GrayImage, RegionFillUp, ImageReduced_p)     </l>
+<l>threshold (ImageReduced_p, Region, 0, 255)</l>
+<l>area_center (Region, null, Row_p, Column_p)       </l>
+<l>for phi_k:=0 to rad(180-1) by rad(5)</l>
+<l>    hom_mat2d_identity (HomMat2DIdentity)</l>
+<l>    hom_mat2d_rotate (HomMat2DIdentity, -phi_k, Column_p, Row_p, HomMat2DRotate)    </l>
+<l>    affine_trans_image (ImageReduced_p, ImageAffineTrans, HomMat2DRotate, 'constant', 'false')</l>
+<l>    points_harris (ImageAffineTrans, 0.6, 2, 0.08, 1000, Row, Column)</l>
+<l>    Feature:=|Row|</l>
+<l>    if (Feature=[])</l>
+<l>        Feature:=0</l>
+<l>    endif</l>
+<l>    gen_cross_contour_xld (Cross, Row, Column, 12, 0.785398)</l>
+<l>    add_sample_class_knn (KNNHandle, real([Feature]), 0)</l>
+<l>endfor       </l>
+<l>train_class_knn (KNNHandle, [], [])</l>
+<l>results:=[]</l>
+<c></c>
+<l>read_image (Image5, 'D:/desk/shape/model.png')</l>
+<l>rgb1_to_gray (Image5, GrayImage)</l>
+<l>threshold (GrayImage, Region2, 0, 255)</l>
+<l>partition_rectangle (Region2, Partitioned, 17, 17)</l>
+<l>sort_region (Partitioned, SortedRegions, 'first_point', 'true', 'row')</l>
+<l>count_obj (Partitioned, Number1)</l>
+<l>for Index := 1 to Number1 by 1</l>
+<l>    select_obj (SortedRegions, ObjectSelected, Index)</l>
+<l>    reduce_domain (GrayImage, ObjectSelected, ImageReduced)</l>
+<l>    points_harris (ImageReduced, 0.6, 2, 0.08, 1000, Row, Column)</l>
+<l>    Feature:=|Row|</l>
+<l>        if (Feature=[])</l>
+<l>            Feature:=0</l>
+<l>        endif</l>
+<l>        gen_cross_contour_xld (Cross, Row, Column, 12, 0.785398)</l>
+<l>        classify_class_knn (KNNHandle, real([Feature]), Class, Rating)</l>
+<l>        results:=[results,classes[Class]]     </l>
+<l>endfor</l>
+<l>area_center (SortedRegions, Area, Row1, Column1)</l>
+<l>dev_close_window ()</l>
+<l>dev_clear_window ()</l>
+<l>get_image_size (ImageReduced, Width, Height)</l>
+<l>dev_open_window (0, 0, Width, Height, 'black', WindowHandle)</l>
+<l>dev_display (Image)</l>
+<l>disp_message (WindowHandle, results, 'image', Row1, Column1, 'black', 'true')</l>
+<l>results:=[]</l>
+<l>stop()</l>
+<l>clear_class_knn (KNNHandle)</l>
+<c>    </c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
